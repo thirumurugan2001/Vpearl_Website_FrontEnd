@@ -48,7 +48,7 @@ const AdminLogin = () => {
     }
     setLoading(true);
     try {
-      const response = await axios.post('http://127.0.0.1:8080/admin/signIn', {
+      const response = await axios.post('http://97.74.87.167/api/admin/signIn', {
         email: username,
         password: password,
         googleId: ""

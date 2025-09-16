@@ -25,7 +25,7 @@ const CustomerDetails = () => {
     
     try {
         const formData = {"userId": userId}
-        const response = await fetch('http://127.0.0.1:8080/customer/getCustomerDetails', { 
+        const response = await fetch('http://97.74.87.167/api/customer/getCustomerDetails', { 
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

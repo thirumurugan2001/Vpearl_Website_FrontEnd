@@ -154,7 +154,7 @@ const CandidateRegistrationForm = () => {
     setMessage("");
     setError("");
     try {
-      const response = await fetch('http://127.0.0.1:8080/careers/candidateRegistration', {
+      const response = await fetch('http://97.74.87.167/api/careers/candidateRegistration', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
