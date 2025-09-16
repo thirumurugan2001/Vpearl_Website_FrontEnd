@@ -23,7 +23,7 @@ const JobBoard = () => {
     const fetchJobs = async () => {
       try {        
         await new Promise(resolve => setTimeout(resolve, 800));        
-        const response = await fetch('http://127.0.0.1:8080/careers/jobDetails');        
+        const response = await fetch('http://127.0.0.1:8080/api/careers/jobDetails');        
         if (!response.ok) {
           throw new Error(`Server responded with status: ${response.status}`);
         }
