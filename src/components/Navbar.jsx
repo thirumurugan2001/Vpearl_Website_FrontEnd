@@ -62,7 +62,7 @@ const Navbar = () => {
             className="flex items-center cursor-pointer"
             onClick={() => navigate("/")}
           >
-            <img src="src/assets/logo.png" alt="Logo" className="h-15 w-auto ml-4" />
+            <img src="home/vpearl/apps/Vpearl_Website_FrontEnd/src/assets/logo.png" alt="Logo" className="h-15 w-auto ml-4" />
             <span className="text-xl font-semibold text-black ml-2 tracking-wide">
               <span className="text-3xl">V</span>Pearl<span className="text-3xl"></span>Solutions
             </span>
