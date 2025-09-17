@@ -34,7 +34,7 @@ function Contact() {
                 message: formData.message,
                 acceptRecurring: formData.acceptRecurring
             };
-            const response = await fetch('http://127.0.0.1:8080/contact/userdetails', {
+            const response = await fetch('http://97.74.87.167/api/contact/userdetails', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
