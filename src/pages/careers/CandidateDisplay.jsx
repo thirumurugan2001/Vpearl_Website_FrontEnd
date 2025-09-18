@@ -1,8 +1,9 @@
+
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, ChevronUp, Download } from 'lucide-react';
-import { FaMailBulk, FaPhoneAlt, FaPlaceOfWorship, FaArrowLeft, FaWhatsapp } from "react-icons/fa";
+import { ChevronDown, ChevronUp, Download, LogOut } from 'lucide-react';
+import { FaMailBulk, FaPhoneAlt, FaPlaceOfWorship, FaArrowLeft } from "react-icons/fa";
 import { useLocation, useNavigate } from 'react-router-dom';
-import { SiHiveBlockchain } from "react-icons/si"; // Logo icon
+import images from '../../assets/images';
 
 const CandidateDisplay = () => {
   const location = useLocation();
@@ -25,7 +26,7 @@ const CandidateDisplay = () => {
       try {
         setLoading(true);
         const formData = { "userId": userId }
-        const response = await fetch('http://97.74.87.167/api/careers/getCandidateDetails', {
+        const response = await fetch('http://127.0.0.1:8080/careers/getCandidateDetails', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -54,6 +55,11 @@ const CandidateDisplay = () => {
 
     fetchCandidates();
   }, []);
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/hr/login");
+  };
 
   const uniqueRoles = candidates.length > 0
     ? [...new Set(candidates.map(candidate => candidate.roles))]
@@ -122,7 +128,7 @@ const CandidateDisplay = () => {
 
   return (
     <>
-      {/* Keep the original navbar */}
+      {/* Navbar with Logout Button */}
       <nav className="fixed top-0 left-0 w-full bg-white shadow-md z-50 border-b border-pink-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
@@ -131,18 +137,24 @@ const CandidateDisplay = () => {
               className="flex items-center cursor-pointer"
               onClick={() => navigate("/")}
             >
-              <SiHiveBlockchain size={28} className="text-pink-600" />
+              <img src={images.logos.logo} alt="Logo" className="h-15 w-auto ml-4" />
               <span className="text-xl font-semibold text-black ml-2 tracking-wide">
                 <span className="text-3xl">V</span>Pearl<span className="text-3xl">S</span>olutions
               </span>
             </div>
             {/* Desktop Navigation */}
-            <div className="hidden md:block">
+            <div className="hidden md:flex items-center space-x-4">
               <button
                 onClick={() => navigate("/")}
                 className="inline-flex items-center px-5 py-2 border-2 border-pink-500 text-sm font-medium rounded-full text-pink-600 bg-white hover:bg-pink-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 transition-all duration-300 shadow-sm hover:shadow-md"
               >
                 <FaArrowLeft className="mr-2" /> Return to Home
+              </button>
+              <button
+                onClick={handleLogout}
+                className="inline-flex items-center px-5 py-2 border-2 border-pink-500 text-sm font-medium rounded-full text-pink-600 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 transition-all duration-300 shadow-sm hover:shadow-md"
+              >
+                <LogOut className="mr-2 h-4 w-4"/> Logout
               </button>
             </div>
           </div>
@@ -156,6 +168,12 @@ const CandidateDisplay = () => {
               className="w-full flex items-center px-3 py-2 text-base font-medium text-pink-600 hover:bg-pink-50 rounded-md"
             >
               <FaArrowLeft className="mr-2" /> Return to Home
+            </button>
+            <button
+              onClick={handleLogout}
+              className="w-full flex items-center px-3 py-2 text-base font-medium text-red-600 hover:bg-red-50 rounded-md"
+            >
+              <LogOut className="mr-2 h-4 w-4" /> Logout
             </button>
           </div>
         </div>
@@ -529,4 +547,3 @@ const CandidateDisplay = () => {
 };
 
 export default CandidateDisplay;
-
