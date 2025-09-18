@@ -26,7 +26,7 @@ const CandidateDisplay = () => {
       try {
         setLoading(true);
         const formData = { "userId": userId }
-        const response = await fetch('http://127.0.0.1:8080/careers/getCandidateDetails', {
+        const response = await fetch('http://97.74.87.167/api/careers/getCandidateDetails', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
