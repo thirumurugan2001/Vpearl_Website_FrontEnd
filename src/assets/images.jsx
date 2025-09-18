@@ -34,6 +34,7 @@ import vision2 from "./vision2.jpg"
 import consultancy1 from "./consultancy1.jpg"
 import consultancy2 from "./consultancy2.jpg"
 import contact from "./contact1.jpg"
+import logo from "./logo.png"
 
 
 const images={
@@ -90,6 +91,9 @@ const images={
     Contact:{
         contact
     },
+    logos:{
+        logo
+    }
 };
 
 export default images;
