@@ -5,6 +5,7 @@ import HeroSection2 from '../components/ContactHerosection';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import images from '../assets/images';
+import apirouter from '../apirouter';
 
 function Contact() {
     useEffect(() => {
@@ -34,7 +35,7 @@ function Contact() {
                 message: formData.message,
                 acceptRecurring: formData.acceptRecurring
             };
-            const response = await fetch('http://97.74.87.167/api/contact/userdetails', {
+            const response = await fetch(apirouter.userDetails, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

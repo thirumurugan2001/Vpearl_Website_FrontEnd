@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import Footer from '../Footer';
 import Button from '../../components/Button';
+import apiRoutes from '../../apirouter';
 
 const JobBoard = () => {
   const [jobs, setJobs] = useState([]);
@@ -23,7 +24,7 @@ const JobBoard = () => {
     const fetchJobs = async () => {
       try {        
         await new Promise(resolve => setTimeout(resolve, 800));        
-        const response = await fetch('http://97.74.87.167/api/careers/jobDetails');        
+        const response = await fetch(apiRoutes.jobDetails);        
         if (!response.ok) {
           throw new Error(`Server responded with status: ${response.status}`);
         }

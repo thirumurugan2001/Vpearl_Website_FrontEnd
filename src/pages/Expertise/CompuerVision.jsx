@@ -3,6 +3,7 @@ import Navbar from "../../components/Navbar"
 import Footer from "../Footer"
 import images from '../../assets/images';
 import Button from '../../components/Button';
+import HeroSection from '../../components/HeroSEction';
 
 function CompuerVision() {
   useEffect(() => {
@@ -11,14 +12,13 @@ function CompuerVision() {
   return (
     <>
       <Navbar />
+      <HeroSection
+        title="Computer Vision"
+        buttonText="Get in Touch"
+        images_url={images.Vision.vision1}
+        onButtonClick={() => window.location.href = '/contact'}
+      />
       <div className="relative w-full h-[400px] bg-black" style={{ marginTop: '60px' }}>
-        {/* Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-30"
-          style={{
-            backgroundImage: `url(${images.Vision.vision1})`
-          }}
-        ></div>
 
         {/* Content */}
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-white">

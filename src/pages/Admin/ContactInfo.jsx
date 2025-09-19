@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import apiRouter from '../../apirouter';
 
 const ContactInfo = () => {
 
@@ -36,7 +37,7 @@ const ContactInfo = () => {
     setLoading(true);
     
     try {
-      const response = await axios.post('http://97.74.87.167/api/admin/signIn', {
+      const response = await axios.post(apiRouter.signIn, {
         email: username,
         password: password,
         googleId:""

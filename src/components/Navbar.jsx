@@ -1,14 +1,20 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
-import images from "../assets/images"; // Logo icon
+import images from '../assets/images';
 
 const Navbar = () => {
   const [dropdown, setDropdown] = useState(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
 
   const toggleDropdown = (index) => {
     setDropdown(dropdown === index ? null : index);
+  };
+
+  const toggleMobileMenu = () => {
+    setMobileOpen(!mobileOpen);
+    setDropdown(null);
   };
 
   const navItems = [
@@ -30,16 +36,6 @@ const Navbar = () => {
         { name: "Consultancy", link: "/expertise/consultancy" }
       ],
     },
-    
-    
-    // {
-    //   name: "Insights",
-    //   submenu: [
-    //     { name: "Blogs", link: "/insights/blogs" },
-    //     { name: "News", link: "/insights/news" },
-       
-    //   ],
-    // },
     {
       name: "Lyf@Vpearl",
       submenu: [
@@ -64,7 +60,7 @@ const Navbar = () => {
           >
             <img src={images.logos.logo} alt="Logo" className="h-15 w-auto ml-4" />
             <span className="text-xl font-semibold text-black ml-2 tracking-wide">
-              <span className="text-3xl">V</span>Pearl<span className="text-3xl"></span>Solutions
+              <span className="text-3xl">V</span>Pearl<span className="text-3xl"></span> Solutions
             </span>
           </div>
 
@@ -116,9 +112,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               className="text-black focus:outline-none"
-              onClick={() =>
-                setDropdown(dropdown === "mobile" ? null : "mobile")
-              }
+              onClick={toggleMobileMenu}
             >
               <svg
                 className="w-6 h-6"
@@ -140,13 +134,16 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Dropdown */}
-      {dropdown === "mobile" && (
+      {mobileOpen && (
         <div className="md:hidden bg-white shadow-md border-t border-gray-200">
           {navItems.map((item, index) => (
             <div key={index} className="border-b border-gray-100">
               {item.link ? (
                 <button
-                  onClick={() => navigate(item.link)}
+                  onClick={() => {
+                    navigate(item.link);
+                    setMobileOpen(false);
+                  }}
                   className="block w-full text-left px-4 py-2 text-black hover:bg-gray-100"
                 >
                   {item.name}
@@ -154,7 +151,7 @@ const Navbar = () => {
               ) : (
                 <>
                   <button
-                    className="w-full text-left px-4 py-2 text-black hover:bg-gray-100 flex items-center"
+                    className="w-full text-left px-4 py-2 text-black hover:bg-gray-100 flex items-center justify-between"
                     onClick={() => toggleDropdown(index)}
                   >
                     {item.name}
@@ -172,7 +169,11 @@ const Navbar = () => {
                       {item.submenu.map((subItem, subIndex) => (
                         <button
                           key={subIndex}
-                          onClick={() => navigate(subItem.link)}
+                          onClick={() => {
+                            navigate(subItem.link);
+                            setMobileOpen(false);
+                            setDropdown(null);
+                          }}
                           className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                         >
                           {subItem.name}

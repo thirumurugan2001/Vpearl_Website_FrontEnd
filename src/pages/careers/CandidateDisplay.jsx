@@ -4,6 +4,7 @@ import { ChevronDown, ChevronUp, Download, LogOut } from 'lucide-react';
 import { FaMailBulk, FaPhoneAlt, FaPlaceOfWorship, FaArrowLeft } from "react-icons/fa";
 import { useLocation, useNavigate } from 'react-router-dom';
 import images from '../../assets/images';
+import apiRoutes from '../../apirouter';
 
 const CandidateDisplay = () => {
   const location = useLocation();
@@ -26,7 +27,7 @@ const CandidateDisplay = () => {
       try {
         setLoading(true);
         const formData = { "userId": userId }
-        const response = await fetch('http://97.74.87.167/api/careers/getCandidateDetails', {
+        const response = await fetch(apiRoutes.candidateDetails, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -15,6 +15,7 @@ export const WebDevelopment = () => {
         title="Software Development"
         buttonText="Get in Touch"
         images_url={images.Software.software1}
+        onButtonClick={() => window.location.href = '/contact'}
       />
 
       <div className="flex items-center justify-center px-4 py-5 bg-white mt-3 ">

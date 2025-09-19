@@ -15,6 +15,7 @@ export const CloudSolutions = () => {
         title="Cloud Solutions"
         buttonText="Get in Touch"
         images_url={images.Cloud.cloud2}
+        onButtonClick={() => window.location.href = '/contact'}
       />
 
       <div className="flex items-center justify-center px-4 py-5 bg-white mt-3 ">

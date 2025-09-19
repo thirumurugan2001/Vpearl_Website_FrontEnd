@@ -5,31 +5,27 @@ import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import adminAnimationData from '../../assets/AdminAnimation.json';
+import apiRoutes from '../../apirouter';
 
 const AdminLogin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [animationData, setAnimationData] = useState(null);
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);  
   const [loading, setLoading] = useState(false);
   const [emailError, setEmailError] = useState('');
   const navigate = useNavigate();
+  
   useEffect(() => {
-    const loadAnimation = async () => {
-      try {
-        const response = await fetch("/src/assets/AdminAnimation.json");
-        const data = await response.json();
-        setAnimationData(data);
-      } catch (error) {
-        console.error("Error loading animation:", error);
-      }
-    };
-    loadAnimation();
+    setAnimationData(adminAnimationData);
   }, []);
+  
   const validateEmail = (email) => {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@vpearlsolutions\.com$/;
     return emailRegex.test(email);
   };
+  
   const handleEmailChange = (e) => {
     const email = e.target.value;
     setUsername(email);
@@ -40,6 +36,7 @@ const AdminLogin = () => {
       setEmailError('');
     }
   };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateEmail(username)) {
@@ -48,7 +45,7 @@ const AdminLogin = () => {
     }
     setLoading(true);
     try {
-      const response = await axios.post('http://97.74.87.167/api/admin/signIn', {
+      const response = await axios.post(apiRoutes.signIn, {
         email: username,
         password: password,
         googleId: ""
@@ -108,7 +105,7 @@ const AdminLogin = () => {
             ADMIN MANAGEMENT PORTAL
           </h1>
           
-          <p className="text-1x mb-6">
+          <p className="text-1xl mb-6">
             <i>Empowering customers with seamless access to services and support.</i>
           </p>
         </div>

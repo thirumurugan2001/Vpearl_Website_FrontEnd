@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import Navbar from '../../components/Navbar';
 import Footer from '../Footer';
 import Button from '../../components/Button';
+import apiRoutes from '../../apirouter';
 
 const CandidateRegistrationForm = () => {
   const location = useLocation();
@@ -154,7 +155,7 @@ const CandidateRegistrationForm = () => {
     setMessage("");
     setError("");
     try {
-      const response = await fetch('http://97.74.87.167/api/careers/candidateRegistration', {
+      const response = await fetch(apiRoutes.candidateRegistration, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

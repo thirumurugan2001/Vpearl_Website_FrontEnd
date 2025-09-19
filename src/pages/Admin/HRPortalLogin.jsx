@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import hrAnimationData from '../../assets/HRAnimation.json';
+import apiroute from '../../apirouter';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -14,22 +16,16 @@ const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const [emailError, setEmailError] = useState('');
   const navigate = useNavigate();
+  
   useEffect(() => {
-    const loadAnimation = async () => {
-      try {
-        const response = await fetch("/src/assets/HRAnimation.json");
-        const data = await response.json();
-        setAnimationData(data);
-      } catch (error) {
-        console.error("Error loading animation:", error);
-      }
-    };
-    loadAnimation();
+    setAnimationData(hrAnimationData);
   }, []);
+  
   const validateEmail = (email) => {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@vpearlsolutions\.com$/;
     return emailRegex.test(email);
   };
+  
   const handleEmailChange = (e) => {
     const email = e.target.value;
     setUsername(email);
@@ -40,6 +36,7 @@ const LoginPage = () => {
       setEmailError('');
     }
   };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateEmail(username)) {
@@ -48,7 +45,7 @@ const LoginPage = () => {
     }
     setLoading(true);
     try {
-      const response = await axios.post('http://97.74.87.167/api/admin/signIn', {
+      const response = await axios.post(apiroute.signIn, {
         email: username,
         password: password,
         googleId: ""
@@ -105,7 +102,7 @@ const LoginPage = () => {
         {/* Text content below animation */}
         <div className="z-10 text-white text-center w-full mt-4">
           <h1 className="text-2xl font-bold mb-6">
-            CANDIDATE MANAGEMENT PROTAL
+            CANDIDATE MANAGEMENT PORTAL
           </h1>
           
           <p className="text-1xl mb-6">

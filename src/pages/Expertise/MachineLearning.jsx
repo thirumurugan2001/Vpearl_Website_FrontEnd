@@ -15,6 +15,7 @@ export const MachineLearning = () => {
         title="Machine Learning"
         buttonText="Get in Touch"
         images_url={images.Expertise.machinelearning1}
+        onButtonClick={() => window.location.href = '/contact'}
       />
       <div className="flex items-center justify-center px-4 py-5 bg-white mt-3 ">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-20 max-w-7xl w-full items-center">

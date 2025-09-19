@@ -15,6 +15,7 @@ function MobileAppDevelopment() {
         title="Web and Mobile App Development"
         buttonText="Get in Touch"
         images_url={images.MobileApp.mobileApp1}
+        onButtonClick={() => window.location.href = '/contact'}
       />
 
       <div className="flex items-center justify-center px-4 py-5 bg-white mt-3 ">

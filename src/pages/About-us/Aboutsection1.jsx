@@ -1,22 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import images from "../../assets/images";
 import Lottie from "lottie-react";
+import usAnimationData from "../../assets/Us.json";
 
 const AboutSection1 = () => {
   const [animationData, setAnimationData] = useState(null);
+  
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    const loadAnimation = async () => {
-      try {
-        const response = await fetch("/src/assets/Us.json");
-        const data = await response.json();
-        setAnimationData(data);
-      } catch (error) {
-        console.error("Error loading animation:", error);
-      }
-    };
-    loadAnimation();
+    setAnimationData(usAnimationData);
   }, []);
+
   return (
     <div className="bg-gray-100 w-full flex flex-col items-center justify-center px-6 py-16">
       {/* CEO's Desk Section */}
@@ -34,13 +28,15 @@ const AboutSection1 = () => {
         </div>
 
         <div className="flex justify-center items-center">
-        {animationData && (<Lottie
+          {animationData && (
+            <Lottie
               animationData={animationData}
               loop
               autoPlay
               className="h-[400px] w-full object-cover rounded-lg shadow-lg bg-black"
               speed={1.0} 
-            />)}
+            />
+          )}
         </div>
       </div>
 
@@ -62,7 +58,7 @@ const AboutSection1 = () => {
             Our team of experts has years of experience in the IT industry, delivering numerous successful projects across various sectors.
           </p>
           <p className="font-semibold text-gray-800">
-            Our commitment to driving innovation and excellence is unmatched. Let’s take your business to the next level together.
+            Our commitment to driving innovation and excellence is unmatched. Let's take your business to the next level together.
           </p>
         </div>
       </div>

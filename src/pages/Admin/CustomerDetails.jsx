@@ -3,6 +3,7 @@ import {LogOut } from 'lucide-react';
 import { FaMailBulk, FaPhoneAlt, FaUser, FaCommentDots, FaArrowLeft, FaReply } from "react-icons/fa";
 import { useLocation, useNavigate } from 'react-router-dom';
 import images from '../../assets/images';
+import apiRoutes from '../../apirouter';
 
 const CustomerDetails = () => {
   const location = useLocation();
@@ -31,7 +32,7 @@ const CustomerDetails = () => {
     
     try {
         const formData = {"userId": userId}
-        const response = await fetch('http://97.74.87.167/api/customer/getCustomerDetails', { 
+        const response = await fetch(apiRoutes.customerDetails, { 
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

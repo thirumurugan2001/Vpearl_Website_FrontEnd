@@ -133,7 +133,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-              to="/careers"
+              to="/careers/hiring-process"
               className="hover:text-pink-600 transition cursor-pointer" 
               >
                 Careers
@@ -147,12 +147,6 @@ const Footer = () => {
                 Contact 
               </Link>         
             </li>
-            {/* <li className="hover:text-pink-600 transition cursor-pointer">
-              Portfolio
-            </li>
-            <li className="hover:text-pink-600 transition cursor-pointer">
-              Blog
-            </li> */}
           </ul>
         </div>
 
@@ -165,8 +159,7 @@ const Footer = () => {
             <span className="block font-medium text-white">
               VPEARL SOLUTIONS
             </span>
-            No:81, Arthiarcade, Dr Radha Krishnan Salai,
-            Mylapore, Chennai - 600004.<br />
+            No:1, 2nd floor, Aarti Arcade, Dr Radhakrishnan Salai, Mylapore, Chennai - 600004.<br />
             <span className="block mt-2">
               Email:{" "}
               <a
