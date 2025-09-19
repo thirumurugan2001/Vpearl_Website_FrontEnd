@@ -93,7 +93,7 @@ function Contact() {
                         <h2 className="text-2xl font-bold mb-6">Contact us</h2>
 
                         <div className="mb-4">
-                            <p className="font-semibold">Bhuvana Krithika</p>
+                            <p className="font-semibold">Bhuvaneswari</p>
                             <p className="text-sm text-gray-600">bhuvaneswari.rm@vpearlsolutions.com</p>
                             <p className="text-sm text-pink-500">+91 90475 60053</p>
                         </div>
@@ -122,8 +122,7 @@ function Contact() {
                         <div>
                             <p className="font-semibold">Mail us at:</p>
                             <p className="text-gray-400">
-                                No:81, Arthiarcade,
-                                Mylapore, Chennai - 600004.<br />
+                                No:1, 2nd floor, Aarti Arcade, Dr Radhakrishnan Salai, Mylapore, Chennai - 600004.<br />
                                 <span className="block mt-2">
                                     Email:{" "}
                                     <a
