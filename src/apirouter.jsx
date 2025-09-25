@@ -1,5 +1,5 @@
 // const BASE_URL = "http://127.0.0.1:8080";
-const BASE_URL = "http://97.74.87.167/api";
+const BASE_URL = "https://vpearlsolutions.com/api";
 
 const apiRoutes = {
   signup: `${BASE_URL}/admin/signup`,
