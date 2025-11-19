@@ -8,6 +8,7 @@ import Component3 from '../components/homecomponents/component3';
 import MajorProjects from '../components/homecomponents/Majorprojects';
 import Component4 from '../components/homecomponents/component4';
 import Component5 from '../components/homecomponents/component5';
+import Component6 from '../components/homecomponents/Component6';
 import Footer from './Footer';
 
 const Home = () => {
@@ -20,6 +21,7 @@ const Home = () => {
       <MajorProjects />
       <Component4 />
       <Component5 />
+      <Component6/>
       <Footer />
     </>
   );

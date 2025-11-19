@@ -35,6 +35,10 @@ import consultancy1 from "./consultancy1.jpg"
 import consultancy2 from "./consultancy2.jpg"
 import contact from "./contact1.jpg"
 import logo from "./logo.png"
+import client1 from './Client1.png'
+import client2 from './Client2.png'
+import client3 from './Client3.png'
+
 
 
 const images={
@@ -93,6 +97,9 @@ const images={
     },
     logos:{
         logo
+    },
+    clients:{
+        client1,client2,client3
     }
 };
 
