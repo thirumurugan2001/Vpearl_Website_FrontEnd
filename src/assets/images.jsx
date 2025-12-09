@@ -39,12 +39,14 @@ import client1 from './Client1.png'
 import client2 from './Client2.png'
 import client3 from './Client3.png'
 import wareHouse from "./wareHouse.png"
+import Homepage from "./homepage.jpg"
 
 
 
 const images={
     Component1:{
-        sec1
+        sec1,   
+        Homepage
     },
     Component2:{
         map
