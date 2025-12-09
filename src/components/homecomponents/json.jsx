@@ -22,6 +22,13 @@ const Projects = [
         type: 'Satellite Imaging',
         description: 'A satellite-based app that monitors land safety and detects changes over time.',
         image: images.projects.land
+    },
+    {
+        id: 4,
+        title: 'AI Warehouses',
+        type: 'Satellite Imaging',
+        description: 'AI Data Warehouse Conversational Data Intelligence Platform',
+        image: images.projects.wareHouse
     }
 ];
 

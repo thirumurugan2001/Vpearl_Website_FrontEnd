@@ -180,7 +180,7 @@ const GeoFencing = () => {
                             <div className="absolute -inset-4 bg-gradient-to-r from-green-100 to-blue-100 rounded-2xl opacity-20 blur-xl"></div>
                             <div className="relative rounded-xl overflow-hidden shadow-lg border border-gray-200">
                                 <img 
-                                    src={images.projects?.geofencing || 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'} 
+                                    src={images.projects?.land || 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'} 
                                     alt="Geo-Fencing Monitoring Dashboard" 
                                     className="w-full h-auto"
                                 />
