@@ -1,9 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import images from "../../assets/images";
 import Button from '../Button';
 
 const Component1 = () => {
-  const bg = images.Component1.sec1
+  const navigate = useNavigate();
+  const bg = images.Component1.sec1;
+
+  const handleExploreClick = () => {
+    navigate('/contact'); 
+  };
+
   return (
     <div
       className="relative min-h-screen bg-cover bg-center"
@@ -14,9 +21,7 @@ const Component1 = () => {
 
       {/* Content */}
       <div className="absolute inset-0 flex items-center justify-center text-center text-white px-4">
-
         <div className="max-w-3xl">
-
           <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
             AI Development Done Right.
           </h1>
@@ -25,7 +30,9 @@ const Component1 = () => {
             Delivering excellence across the US, Australia, Middle East, and the UK.
           </p>
 
-          <Button >  Ready to Explore?</Button>
+          <Button onClick={handleExploreClick}>
+            Ready to Explore?
+          </Button>
         </div>
       </div>
     </div>

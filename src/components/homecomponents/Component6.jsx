@@ -10,7 +10,7 @@ const Component6 = () => {
       id: 1,
       name: "Bharathi Electricals",
       logo: images.clients.client1,
-      project: "ERP Product",
+      project: "ERP Platform",
       description: "Comprehensive enterprise resource planning solution streamlining operations and inventory management"
     },
     {
@@ -24,7 +24,7 @@ const Component6 = () => {
       id: 3,
       name: "White Globe",
       logo: images.clients.client3,
-      project: "AI Translator",
+      project: "AI Translation Platform",
       description: "Advanced artificial intelligence translation platform breaking language barriers in real-time communication"
     }
   ];
@@ -48,8 +48,8 @@ const Component6 = () => {
           </p>
         </div>
 
-        {/* Clients Grid - Further reduced card size */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-12">
+        {/* Clients Grid - Logo color shown by default */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
           {clients.map((client) => (
             <div 
               key={client.id} 
@@ -57,24 +57,24 @@ const Component6 = () => {
             >
               {/* Client Card */}
               <div className="p-5">
-                {/* Logo Section */}
-                <div className="flex justify-center mb-3">
-                  <div className="bg-white p-2 rounded-md shadow-sm group-hover:shadow transition-shadow duration-300">
+                {/* Logo Section - Color shown by default */}
+                <div className="flex justify-center mb-4">
+                  <div className="bg-white p-4 rounded-lg shadow-sm group-hover:shadow transition-shadow duration-300">
                     <img 
                       src={client.logo} 
                       alt={`${client.name} logo`}
-                      className="h-10 w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                      className="h-16 w-auto object-contain transition-all duration-300"
                     />
                   </div>
                 </div>
                 
                 {/* Client Info */}
                 <div className="text-center">
-                  <h3 className="text-base font-bold text-gray-900 mb-1 cinzel-heading group-hover:text-pink-700 transition-colors duration-300">
+                  <h3 className="text-base font-bold text-gray-900 mb-2 cinzel-heading group-hover:text-pink-700 transition-colors duration-300">
                     {client.name}
                   </h3>
                   
-                  <div className="inline-block bg-gradient-to-r from-pink-50 to-purple-50 px-2 py-1 rounded-full mb-2 border border-pink-100">
+                  <div className="inline-block bg-gradient-to-r from-pink-50 to-purple-50 px-3 py-1 rounded-full mb-3 border border-pink-100">
                     <span className="text-pink-700 font-semibold text-xs uppercase tracking-wide">
                       {client.project}
                     </span>

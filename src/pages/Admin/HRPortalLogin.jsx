@@ -62,7 +62,7 @@ const LoginPage = () => {
               navigate("/candidates", { state: { userId: userId } });              
               }, 2000);
             }
-          else {
+        else {
               toast.error('You are not allowed to use this Portal.');
               setTimeout(() => {
                   navigate("/unauthorized");              

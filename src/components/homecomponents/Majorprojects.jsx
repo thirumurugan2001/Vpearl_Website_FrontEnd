@@ -1,8 +1,19 @@
 import React from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import projects from './json';
 
 const MajorProjects = () => {
+    const navigate = useNavigate();
+
+    const handleExploreClick = (projectId) => {
+        if (projectId === 1) { 
+            navigate('/projects/langtech');
+        }
+        if (projectId === 2) {
+            navigate('/projects/venueta');
+        }
+    };
+
     return (
         <div className="py-16 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4">
@@ -24,9 +35,12 @@ const MajorProjects = () => {
                             <div className="p-6 text-center">
                                 <h3 className="text-lg font-bold text-gray-800">{project.title}</h3>
                                 <p className="text-sm text-gray-500 mb-2">{project.type}</p>
-                                <a href="#" className="text-pink-700 font-semibold hover:text-blue-800 inline-flex items-center gap-1 mt-4">
+                                <button 
+                                    onClick={() => handleExploreClick(project.id)}
+                                    className="text-pink-700 font-semibold hover:text-blue-800 inline-flex items-center gap-1 mt-4 cursor-pointer bg-transparent border-none"
+                                >
                                     Explore More →
-                                </a>
+                                </button>
                             </div>
                         </div>
                     ))}

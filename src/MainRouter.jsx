@@ -13,6 +13,8 @@ import Unauthorized from "./pages/Admin/Unauthorized";
 import AdminLogin from "./pages/Admin/AdminLogin";
 import CustomerDetails from "./pages/Admin/CustomerDetails";
 import ExpertiseRoutes from "./Routers/ExpertiseRoutes";
+import Langtech from "../src/components/Project/Langtech"
+import VenueTa from "./components/Project/VenueTa";
 
 const MainRouter = createBrowserRouter([
   {
@@ -67,6 +69,15 @@ const MainRouter = createBrowserRouter([
     path: "/unauthorized",
     element: < Unauthorized/>,
   },
+  { 
+    path:"/projects/langtech", 
+    element:<Langtech />
+  },
+  { 
+    path:"/projects/venueta", 
+    element:<VenueTa />
+  },
+
   ...ExpertiseRoutes, 
 ]);
 
