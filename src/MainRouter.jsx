@@ -15,6 +15,7 @@ import CustomerDetails from "./pages/Admin/CustomerDetails";
 import ExpertiseRoutes from "./Routers/ExpertiseRoutes";
 import Langtech from "../src/components/Project/Langtech"
 import VenueTa from "./components/Project/VenueTa";
+import GeoFencing from "./components/Project/GeoFencing";
 
 const MainRouter = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ const MainRouter = createBrowserRouter([
   { 
     path:"/projects/venueta", 
     element:<VenueTa />
+  },
+  { 
+    path:"/projects/geofencing", 
+    element:<GeoFencing />
   },
 
   ...ExpertiseRoutes, 

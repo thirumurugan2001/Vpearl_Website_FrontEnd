@@ -18,7 +18,6 @@ import {
 import images from '../../assets/images';
 
 const VenueTa = () => {
-    // Scroll to top on component mount
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -172,18 +171,6 @@ const VenueTa = () => {
                                 and comprehensive management tools. From corporate conferences to dream weddings, 
                                 make every event unforgettable with our cutting-edge platform.
                             </p>
-
-                            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                                <Link 
-                                    to="/contact"
-                                    className="bg-pink-600 hover:bg-pink-700 text-white font-medium py-3 px-8 rounded-md transition-all duration-200 hover:shadow-lg text-center"
-                                >
-                                    Join Waitlist
-                                </Link>
-                                <button className="bg-white text-gray-700 font-medium py-3 px-8 rounded-md border-2 border-gray-300 hover:border-pink-600 hover:text-pink-600 transition-colors">
-                                    View Demo
-                                </button>
-                            </div>
                         </div>
 
                         <div className="relative">
@@ -344,5 +331,4 @@ const VenueTa = () => {
         </div>
     );
 };
-
 export default VenueTa;

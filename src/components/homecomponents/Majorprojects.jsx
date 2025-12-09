@@ -12,6 +12,9 @@ const MajorProjects = () => {
         if (projectId === 2) {
             navigate('/projects/venueta');
         }
+        if (projectId === 3) {
+            navigate('/projects/geofencing');
+        }
     };
 
     return (
