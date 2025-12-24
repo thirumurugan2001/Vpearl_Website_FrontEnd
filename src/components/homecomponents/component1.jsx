@@ -74,7 +74,14 @@ const Component1 = () => {
   };
 
   const checkMobile = () => {
-    setIsMobile(window.innerWidth < 768);
+    const mobile = window.innerWidth < 768;
+    setIsMobile(mobile);
+    
+    // Update Vanta effect for mobile if it exists
+    if (window.vantaEffect) {
+      // Vanta.js handles mobile scaling automatically with scaleMobile setting
+      window.vantaEffect.resize();
+    }
   };
 
   const handleExploreClick = () => {
@@ -122,35 +129,48 @@ const Component1 = () => {
       <div className="absolute inset-0 bg-black opacity-60 z-10"></div>
       
       {/* Content */}
-      <div className="relative z-20 flex items-center justify-center min-h-screen text-center text-white px-4 md:px-8 py-12">
+      <div className="relative z-20 flex items-center justify-center min-h-screen text-center text-white px-4 md:px-8 py-8 md:py-12">
         <div className="max-w-3xl w-full">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight px-2">
+          {/* Main Heading - Mobile Responsive */}
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight px-2">
             <span className="bg-gradient-to-r from-white to-pink-100 text-transparent bg-clip-text rounded-xl shadow-lg">
               AI Development Done Right
             </span>
           </h1>
-          <p className="text-sm sm:text-base md:text-lg lg:text-l mb-6 md:mb-8 px-2 md:px-0">
-            <span className="text-pink-700 font-semibold">AI & Software Engineering</span> <span className='bg-gradient-to-r from-gray-100 to-pink-800 text-transparent bg-clip-text rounded-xl shadow-lg'>Consultants. We design, develop, and deploy AI-based software and applications.
-            Delivering excellence across the US, Australia, Middle East, and the UK.</span>
-          </p>
+          
+          {/* Subtitle - Mobile Responsive */}
+          <div className="text-xs sm:text-sm md:text-base lg:text-lg mb-6 md:mb-8 px-2 md:px-0 leading-relaxed">
+            <span className="text-pink-600 font-semibold">AI & Software Engineering</span>{' '}
+            <span className="bg-gradient-to-r from-gray-100 to-pink-800 text-transparent bg-clip-text rounded-xl shadow-lg">
+              Consultants. We design, develop, and deploy AI-based software and applications.
+              Delivering excellence across the US, Australia, Middle East, and the UK.
+            </span>
+          </div>
+          
+          {/* CTA Button - Mobile Responsive */}
           <button
             onClick={handleExploreClick}
-            className="bg-gradient-to-r from-pink-600 to-pink-800 hover:from-pink-700 hover:to-pink-900 text-white font-semibold py-3 px-6 md:py-4 md:px-10 rounded-lg transition-all duration-300 text-sm md:text-base w-full sm:w-auto shadow-lg hover:shadow-xl hover:scale-105 transform"
+            className="bg-gradient-to-r from-pink-600 to-pink-800 hover:from-pink-700 hover:to-pink-900 text-white font-semibold py-3 px-6 md:py-4 md:px-10 rounded-lg transition-all duration-300 text-sm md:text-base w-full max-w-xs sm:max-w-none sm:w-auto shadow-lg hover:shadow-xl hover:scale-105 transform mx-auto block sm:inline-block"
           >
             Ready to Explore?
           </button>
         </div>
       </div>
 
-      {/* Chatbot Icon with Lottie Animation */}
-      <div className={`fixed z-50 ${isMobile ? 'bottom-4 right-4' : 'bottom-6 right-6'}`}>
+      {/* Chatbot - Mobile Responsive Positioning */}
+      <div className={`fixed z-50 transition-all duration-300 ${
+        isMobile 
+          ? isChatOpen ? 'bottom-1/2 right-1/2 transform translate-x-1/2 translate-y-1/2' : 'bottom-4 right-4' 
+          : 'bottom-6 right-6'
+      }`}>
+        {/* Chatbot Icon Button - Mobile Responsive */}
         {!isChatOpen && (
           <button
             onClick={toggleChat}
-            className="text-white rounded-full p-2 duration-300 hover:scale-110"
+            className="text-white rounded-full p-2 duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 focus:ring-offset-gray-900"
             style={{ 
-              width: isMobile ? '100px' : '180px', 
-              height: isMobile ? '80px' : '150px' 
+              width: isMobile ? '70px' : '180px', 
+              height: isMobile ? '70px' : '150px' 
             }}
             aria-label="Open chat"
           >
@@ -163,7 +183,7 @@ const Component1 = () => {
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 md:h-8 md:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
                 </svg>
               </div>
@@ -171,20 +191,20 @@ const Component1 = () => {
           </button>
         )}
 
-        {/* Chat Window */}
+        {/* Chat Window - Mobile Responsive */}
         {isChatOpen && (
           <div 
             className={`bg-white rounded-lg shadow-2xl flex flex-col ${
               isMobile 
-                ? 'fixed inset-4 top-auto h-[60vh] max-h-[500px]' 
+                ? 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90vw] h-[70vh] max-h-[500px]' 
                 : 'w-80 md:w-96 h-[500px]'
             }`}
           >
-            {/* Chat Header */}
+            {/* Chat Header - Mobile Responsive */}
             <div className="bg-gradient-to-r from-pink-600 to-pink-800 text-white p-3 md:p-4 rounded-t-lg flex justify-between items-center">
               <div className="flex items-center gap-2">
                 {animationData && (
-                  <div className="w-5 h-5 md:w-6 md:h-6">
+                  <div className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6">
                     <Lottie
                       animationData={animationData}
                       loop={true}
@@ -197,14 +217,14 @@ const Component1 = () => {
               </div>
               <button
                 onClick={toggleChat}
-                className="hover:bg-pink-900 rounded-full p-1 transition-colors"
+                className="hover:bg-pink-900 rounded-full p-1 transition-colors focus:outline-none focus:ring-2 focus:ring-white"
                 aria-label="Close chat"
               >
-                <X size={isMobile ? 18 : 20} />
+                <X size={isMobile ? 16 : 20} />
               </button>
             </div>
 
-            {/* Messages Area */}
+            {/* Messages Area - Mobile Responsive */}
             <div className="flex-1 overflow-y-auto p-3 md:p-4 space-y-2 md:space-y-3 bg-gray-50">
               {messages.map((message, index) => (
                 <div
@@ -212,7 +232,7 @@ const Component1 = () => {
                   className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-[85%] md:max-w-xs px-3 py-2 md:px-4 md:py-2 rounded-lg text-sm md:text-base ${
+                    className={`max-w-[85%] px-3 py-2 rounded-lg text-sm md:text-base ${
                       message.sender === 'user'
                         ? 'bg-gradient-to-r from-pink-600 to-pink-800 text-white'
                         : 'bg-white text-gray-800 border border-gray-200'
@@ -224,7 +244,7 @@ const Component1 = () => {
               ))}
             </div>
 
-            {/* Input Area */}
+            {/* Input Area - Mobile Responsive */}
             <div className="p-3 md:p-4 border-t border-gray-200 bg-white rounded-b-lg">
               <div className="flex gap-2">
                 <input
@@ -237,10 +257,10 @@ const Component1 = () => {
                 />
                 <button
                   onClick={handleSendMessage}
-                  className="bg-gradient-to-r from-pink-600 to-pink-800 hover:from-pink-700 hover:to-pink-900 text-white rounded-lg px-3 py-2 md:px-4 md:py-2 transition-colors shadow-md"
+                  className="bg-gradient-to-r from-pink-600 to-pink-800 hover:from-pink-700 hover:to-pink-900 text-white rounded-lg px-3 py-2 md:px-4 md:py-2 transition-colors shadow-md focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
                   aria-label="Send message"
                 >
-                  <Send size={isMobile ? 18 : 20} />
+                  <Send size={isMobile ? 16 : 20} />
                 </button>
               </div>
               {isMobile && (
@@ -263,5 +283,5 @@ const Component1 = () => {
     </div>
   );
 };
-
+  
 export default Component1;
