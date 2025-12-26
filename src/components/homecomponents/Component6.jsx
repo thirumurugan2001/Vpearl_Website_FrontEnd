@@ -100,7 +100,7 @@ const Component6 = () => {
           </p>
           <button 
             onClick={handleContactClick}
-            className="bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-sm"
+            className="bg-pink-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-pink-800 transition"
           >
             Start Your Project Today
           </button>
