@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { X, Send, Bot, User, Sparkles, Clock, CheckCheck } from 'lucide-react';
 import Lottie from "lottie-react";
 import chatbotAnimationData from '../../assets/chatbot-animation.json';
@@ -19,6 +19,7 @@ const Component1 = () => {
   const [animationData, setAnimationData] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isVantaReady, setIsVantaReady] = useState(false);
   const navigate = useNavigate();
   
   // Typing animation state for main title
@@ -52,12 +53,166 @@ const Component1 = () => {
   const messagesEndRef = useRef(null);
   const typingIntervalRef = useRef(null);
   const inputRef = useRef(null);
+  const initAttemptsRef = useRef(0);
+  const maxInitAttempts = 3;
 
   // Full text for typing animation
   const fullText = "AI & Software Engineering Consultants. We design, develop, and deploy AI-based software and applications. Delivering excellence across the US, Australia, Middle East, and the UK.";
 
   // API Configuration
   const API_URL = "http://127.0.0.1:8080/customer/query";
+
+  // Helper functions
+  const loadScript = useCallback((src) => {
+    return new Promise((resolve, reject) => {
+      // Check if script is already loaded
+      const existingScript = document.querySelector(`script[src="${src}"]`);
+      if (existingScript) {
+        // If script is already there, wait for it to load
+        if (window.THREE && src.includes('three.js') || window.VANTA && src.includes('vanta')) {
+          resolve();
+          return;
+        }
+        
+        // If it exists but global object isn't ready yet, add event listener
+        existingScript.addEventListener('load', () => {
+          // Give it a moment for global objects to be attached
+          setTimeout(resolve, 100);
+        });
+        return;
+      }
+      
+      const script = document.createElement('script');
+      script.src = src;
+      script.async = true;
+      script.defer = true;
+      
+      script.onload = () => {
+        // Small delay to ensure global objects are attached
+        setTimeout(resolve, 100);
+      };
+      
+      script.onerror = () => {
+        console.error(`Failed to load script: ${src}`);
+        reject(new Error(`Failed to load script: ${src}`));
+      };
+      
+      document.head.appendChild(script);
+    });
+  }, []);
+
+  const initVanta = useCallback(() => {
+    if (initAttemptsRef.current >= maxInitAttempts) {
+      console.warn('Max Vanta initialization attempts reached');
+      return;
+    }
+
+    if (!containerRef.current || !window.VANTA || !window.VANTA.GLOBE) {
+      console.warn('Vanta.js or container not ready, will retry...');
+      
+      if (initAttemptsRef.current < maxInitAttempts) {
+        initAttemptsRef.current += 1;
+        setTimeout(initVanta, 500);
+      }
+      return;
+    }
+
+    // Don't reinitialize if already initialized
+    if (vantaInitializedRef.current) {
+      return;
+    }
+
+    try {
+      cleanupVanta();
+      
+      vantaRef.current = window.VANTA.GLOBE({
+        el: containerRef.current,
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        backgroundColor: 0x0a0a0a,
+        color: 0xff6b9d,
+        color2: 0xffffff,
+        size: 0.8
+      });
+      
+      vantaInitializedRef.current = true;
+      setIsVantaReady(true);
+      
+      console.log('Vanta.js initialized successfully');
+      
+      // Force resize after initialization
+      setTimeout(() => {
+        if (vantaRef.current && typeof vantaRef.current.resize === 'function') {
+          try {
+            vantaRef.current.resize();
+          } catch (error) {
+            console.error('Error resizing Vanta:', error);
+          }
+        }
+      }, 300);
+      
+    } catch (error) {
+      console.error('Failed to initialize Vanta.js:', error);
+      vantaInitializedRef.current = false;
+      setIsVantaReady(false);
+      
+      if (initAttemptsRef.current < maxInitAttempts) {
+        initAttemptsRef.current += 1;
+        setTimeout(initVanta, 1000);
+      }
+    }
+  }, []);
+
+  const cleanupVanta = useCallback(() => {
+    if (vantaRef.current && typeof vantaRef.current.destroy === 'function') {
+      try {
+        vantaRef.current.destroy();
+      } catch (error) {
+        console.error('Error cleaning up Vanta.js:', error);
+      }
+    }
+    vantaRef.current = null;
+    vantaInitializedRef.current = false;
+  }, []);
+
+  const loadVantaScripts = useCallback(async () => {
+    try {
+      // Load Three.js first
+      await loadScript('https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js');
+      
+      // Verify THREE is loaded
+      if (!window.THREE) {
+        throw new Error('THREE.js not loaded');
+      }
+      
+      // Load Vanta.js
+      await loadScript('https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js');
+      
+      // Verify VANTA is loaded
+      if (!window.VANTA || !window.VANTA.GLOBE) {
+        throw new Error('VANTA.js not loaded properly');
+      }
+      
+      console.log('Vanta scripts loaded successfully');
+      
+      // Initialize Vanta with a small delay
+      setTimeout(initVanta, 200);
+      
+    } catch (error) {
+      console.error('Failed to load Vanta scripts:', error);
+      
+      // Retry loading
+      if (initAttemptsRef.current < maxInitAttempts) {
+        initAttemptsRef.current += 1;
+        setTimeout(loadVantaScripts, 1000);
+      }
+    }
+  }, [loadScript, initVanta]);
 
   useEffect(() => {
     // Load animation data
@@ -69,28 +224,41 @@ const Component1 = () => {
     // Add resize listener
     window.addEventListener('resize', checkMobile);
     
-    const loadVantaScripts = async () => {
-      if (!window.THREE) {
-        await loadScript('https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js');
-      }
-      
-      if (!window.VANTA) {
-        await loadScript('https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js');
-      }      
-      setTimeout(() => {
-        initVanta();
-      }, 100);
-    };
-    
+    // Load Vanta scripts
     loadVantaScripts();
     
     return () => {
       window.removeEventListener('resize', checkMobile);
       cleanupVanta();
+      
       // Clean up typing interval
       if (typingIntervalRef.current) {
         clearInterval(typingIntervalRef.current);
       }
+    };
+  }, [cleanupVanta, loadVantaScripts]);
+
+  // Handle resize events with debouncing
+  useEffect(() => {
+    let resizeTimer;
+    const handleResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        checkMobile();
+        if (vantaRef.current && typeof vantaRef.current.resize === 'function') {
+          try {
+            vantaRef.current.resize();
+          } catch (error) {
+            console.error('Error resizing Vanta on window resize:', error);
+          }
+        }
+      }, 250);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(resizeTimer);
     };
   }, []);
 
@@ -118,10 +286,7 @@ const Component1 = () => {
     if (currentIndex < fullText.length) {
       const timeoutId = setTimeout(() => {
         setTypedText(prev => prev + fullText[currentIndex]);
-        
-        const nextIndex = currentIndex + 1;
-        setCurrentIndex(nextIndex);
-        
+        setCurrentIndex(prev => prev + 1);
       }, fullText[currentIndex] === '.' ? pauseAtPeriods : typingSpeed);
 
       return () => clearTimeout(timeoutId);
@@ -151,7 +316,7 @@ const Component1 = () => {
               msg.id === prev.id 
                 ? { 
                     ...msg, 
-                    text: prev.text, // This should be the original text with bold markers
+                    text: prev.text,
                     isTyping: false, 
                     status: 'read',
                     timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
@@ -184,23 +349,6 @@ const Component1 = () => {
     };
   }, [currentTypingMessage.isTyping, currentTypingMessage.text]);
 
-  // Helper functions
-  const loadScript = (src) => {
-    return new Promise((resolve, reject) => {
-      if (document.querySelector(`script[src="${src}"]`)) {
-        resolve();
-        return;
-      }
-      
-      const script = document.createElement('script');
-      script.src = src;
-      script.async = true;
-      script.onload = () => resolve();
-      script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
-      document.head.appendChild(script);
-    });
-  };
-
   const formatTextWithBold = (text) => {
     if (!text) return null;
     
@@ -218,77 +366,9 @@ const Component1 = () => {
     return text.replace(/\*\*/g, '');
   };
 
-  const initVanta = () => {
-    cleanupVanta();
-    
-    if (!containerRef.current || !window.VANTA || !window.VANTA.GLOBE) {
-      console.warn('Vanta.js or container not ready');
-      return;
-    }
-    
-    if (vantaInitializedRef.current) {
-      return;
-    }
-    
-    try {
-      vantaRef.current = window.VANTA.GLOBE({
-        el: containerRef.current,
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        minHeight: 200.00,
-        minWidth: 200.00,
-        scale: 1.00,
-        scaleMobile: 1.00,
-        backgroundColor: 0x0a0a0a,
-        color: 0xff6b9d,
-        color2: 0xffffff,
-        size: 0.8,
-        _vanta: {
-          onInit: () => {
-            vantaInitializedRef.current = true;
-          }
-        }
-      });
-      
-      vantaInitializedRef.current = true;
-      
-      setTimeout(() => {
-        if (vantaRef.current && vantaRef.current.resize) {
-          vantaRef.current.resize();
-        }
-      }, 500);
-      
-    } catch (error) {
-      console.error('Failed to initialize Vanta.js:', error);
-      vantaInitializedRef.current = false;
-    }
-  };
-
-  const cleanupVanta = () => {
-    if (vantaRef.current && vantaRef.current.destroy) {
-      try {
-        vantaRef.current.destroy();
-      } catch (error) {
-        console.error('Error cleaning up Vanta.js:', error);
-      }
-    }
-    vantaRef.current = null;
-    vantaInitializedRef.current = false;
-  };
-
   const checkMobile = () => {
     const mobile = window.innerWidth < 768;
     setIsMobile(mobile);
-    
-    if (vantaRef.current && vantaRef.current.resize) {
-      clearTimeout(window.vantaResizeTimeout);
-      window.vantaResizeTimeout = setTimeout(() => {
-        if (vantaRef.current && vantaRef.current.resize) {
-          vantaRef.current.resize();
-        }
-      }, 250);
-    }
   };
 
   const handleExploreClick = () => {
@@ -360,17 +440,16 @@ const Component1 = () => {
       clearInterval(typingIntervalRef.current);
     }
     
-    // Store the original text with bold markers for final display
     const textForTyping = removeBoldMarkers(text);
     
     setCurrentTypingMessage({
       id: messageId,
-      text: text, // Keep original text with bold markers
+      text: text,
       typedText: "",
       isTyping: true,
       isComplete: false,
       currentIndex: 0,
-      originalText: text // Store original
+      originalText: text
     });
   };
 
@@ -406,11 +485,7 @@ const Component1 = () => {
     // Fetch bot response from API
     try {
       const botResponse = await fetchBotResponse(messageToSend);
-      
-      // Store the original response text (with bold markers)
       const originalResponse = botResponse;
-      
-      // Start typing animation with the original response
       startTypingAnimation(botMessageId, originalResponse);
       
     } catch (error) {
@@ -448,16 +523,10 @@ const Component1 = () => {
     setIsTyping(true);
   };
 
-  useEffect(() => {
-    restartTyping();
-  }, []);
-
   const renderMessage = (message) => {
-    // Check if this message is currently being typed
     const isCurrentTypingMessage = currentTypingMessage.id === message.id && currentTypingMessage.isTyping;
     
     if (isCurrentTypingMessage) {
-      // For typing animation, show partial text without bold formatting during animation
       return (
         <div className="space-y-2">
           <div className="flex items-center">
@@ -468,22 +537,28 @@ const Component1 = () => {
       );
     }
     
-    // For completed messages, format with bold text
     return formatTextWithBold(message.text);
   };
 
   return (
     <div className="relative min-h-screen bg-gray-900 overflow-hidden">
-      {/* Vanta.js Globe Background with ref */}
+      {/* Vanta.js Globe Background */}
       <div 
         ref={containerRef}
         id="vanta-background"
         className="absolute inset-0 z-0"
         style={{ 
           width: '100%',
-          height: '100%'
+          height: '100%',
+          opacity: isVantaReady ? 1 : 0,
+          transition: 'opacity 0.5s ease-in-out'
         }}
       />
+      
+      {/* Fallback background while Vanta loads */}
+      {!isVantaReady && (
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-pink-900 z-0"></div>
+      )}
       
       {/* Dark overlay for better text readability */}
       <div className="absolute inset-0 bg-black opacity-60 z-10"></div>
@@ -491,14 +566,14 @@ const Component1 = () => {
       {/* Content */}
       <div className="relative z-20 flex items-center justify-center min-h-screen text-center text-white px-4 md:px-8 py-8 md:py-12">
         <div className="max-w-3xl w-full">
-          {/* Main Heading - Mobile Responsive */}
+          {/* Main Heading */}
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight px-2">
             <span className="bg-gradient-to-r from-white to-white text-transparent bg-clip-text rounded-xl shadow-lg">
               AI Development Done Right
             </span>
           </h1>
           
-          {/* Subtitle with Typing Animation - Mobile Responsive */}
+          {/* Subtitle with Typing Animation */}
           <div className="text-xs sm:text-sm md:text-base lg:text-lg mb-6 md:mb-8 px-2 md:px-0 leading-relaxed min-h-[80px] sm:min-h-[60px] md:min-h-[70px] flex items-center justify-center">
             <div className="typing-container relative">
               <span className="text-pink-600 font-semibold">
@@ -530,7 +605,7 @@ const Component1 = () => {
             </div>
           </div>
           
-          {/* CTA Button - Mobile Responsive */}
+          {/* CTA Button */}
           <button
             onClick={handleExploreClick}
             className="bg-gradient-to-r from-pink-600 to-pink-800 hover:from-pink-700 hover:to-pink-900 text-white font-semibold py-3 px-6 md:py-4 md:px-10 rounded-lg transition-all duration-300 text-sm md:text-base w-full max-w-xs sm:max-w-none sm:w-auto shadow-lg hover:shadow-xl hover:scale-105 transform mx-auto block sm:inline-block"
@@ -540,7 +615,7 @@ const Component1 = () => {
         </div>
       </div>
 
-      {/* Chatbot - Professional Implementation */}
+      {/* Chatbot */}
       <div className={`fixed z-50 transition-all duration-300 ${
         isMobile 
           ? isChatOpen ? 'inset-0' : 'bottom-4 right-4' 
@@ -580,7 +655,7 @@ const Component1 = () => {
           </button>
         )}
 
-        {/* Chat Window - Professional Design */}
+        {/* Chat Window */}
         {isChatOpen && (
           <div 
             className={`bg-white rounded-xl shadow-2xl flex flex-col overflow-hidden border border-gray-200 ${

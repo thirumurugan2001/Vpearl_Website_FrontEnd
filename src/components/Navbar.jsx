@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
-import images from '../assets/images';
+import images from "../assets/images";
 
 const Navbar = () => {
   const [dropdown, setDropdown] = useState(null);
@@ -29,11 +29,17 @@ const Navbar = () => {
         { name: "Data Science", link: "/expertise/data-science" },
         { name: "Automation", link: "/expertise/automation" },
         { name: "Cloud Solutions", link: "/expertise/cloud-solutions" },
-        { name: "Software Development", link: "/expertise/software-development" },
-        { name: "Web And Mobile App Development", link: "/expertise/web-mobile-app-development" },
+        {
+          name: "Software Development",
+          link: "/expertise/software-development",
+        },
+        {
+          name: "Web And Mobile App Development",
+          link: "/expertise/web-mobile-app-development",
+        },
         { name: "AI-Powered Chatbots", link: "/expertise/ai-chatbots" },
         { name: "Computer Vision", link: "/expertise/computer-vision" },
-        { name: "Consultancy", link: "/expertise/consultancy" }
+        { name: "Consultancy", link: "/expertise/consultancy" },
       ],
     },
     {
@@ -53,15 +59,29 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 w-full bg-white shadow-md border-b border-gray-200 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          {/* Logo */}
+          {/* Logo Section - Option 1: Modern Gradient */}
           <div
-            className="flex items-center cursor-pointer"
+            className="flex items-center cursor-pointer group"
             onClick={() => navigate("/")}
           >
-            <img src={images.logos.logo} alt="Logo" className="h-15 w-auto ml-4" />
-            <span className="text-xl font-semibold text-black ml-2 tracking-wide">
-              <span className="text-3xl">V</span>Pearl<span className="text-3xl"></span> Solutions
-            </span>
+            <div className="relative">
+              <img
+                src={images.logos.logo}
+                alt="V Pearl Solutions"
+                className="h-12 w-auto transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+
+            <div className="ml-4">
+              <div className="flex items-baseline">
+                <span className="text-2xl font-bold bg-gradient-to-r from-pink-600 to-pink-600 bg-clip-text text-transparent">
+                  VPEARL SOLUTIONS
+                </span>
+              </div>
+              <div className=" text-gray-500 text-xs tracking-wider mt-0.5">
+                INTELLIGENT • INNOVATIVE • IMPACTFUL
+              </div>
+            </div>
           </div>
 
           {/* Desktop Nav */}
