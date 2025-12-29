@@ -1,6 +1,5 @@
 import images from "../../assets/images";
 
-
 const Projects = [
     {
         id: 1,
@@ -29,6 +28,14 @@ const Projects = [
         type: 'Satellite Imaging',
         description: 'AI Data Warehouse Conversational Data Intelligence Platform',
         image: images.projects.wareHouse
+    },
+    {
+        id: 5,
+        title: 'AI Face Identification System',
+        type: 'Computer Vision & AI',
+        description: 'Real-Time Face Identification with Instant Alerts - AI-powered face recognition system for secure premises with Telegram notifications.',
+        image: images.projects.faceId || images.projects.land, 
+        longDescription: 'Our AI-powered Face Recognition System delivers real-time identification and instant alerts for unknown individuals. Built using advanced computer vision and deep learning techniques, the system is designed for offices and secure premises with seamless n8n & Telegram integration.'
     }
 ];
 
