@@ -40,6 +40,7 @@ import client2 from './Client2.png'
 import client3 from './Client3.png'
 import wareHouse from "./wareHouse.png"
 import Homepage from "./homepage.jpg"
+import faceId from "./FaceIdentification.jpg"
 
 
 
@@ -61,7 +62,8 @@ const images={
         langtech,
         event,
         land,
-        wareHouse
+        wareHouse,
+        faceId
     },
     aboutsection1:{
         ceo,why

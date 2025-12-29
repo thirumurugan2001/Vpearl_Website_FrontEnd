@@ -88,9 +88,6 @@ const Component6 = () => {
             >
               <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden h-full">
                 
-                {/* Top Accent Bar */}
-                <div className="h-1 bg-gradient-to-r from-pink-400 to-pink-600"></div>
-                
                 <div className="p-4">
                   {/* Logo & Rating */}
                   <div className="flex flex-col items-center mb-3">

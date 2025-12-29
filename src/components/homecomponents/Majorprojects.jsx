@@ -19,6 +19,9 @@ const MajorProjects = () => {
         if (projectId === 4) {
             navigate('/projects/warehouse');
         }
+        if (projectId === 5) {
+            navigate('/projects/faceidentification');
+        }
     };
 
     useEffect(() => {
