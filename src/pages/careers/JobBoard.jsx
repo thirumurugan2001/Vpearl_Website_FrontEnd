@@ -93,14 +93,10 @@ const JobBoard = () => {
       <Navbar />
       <div className="flex flex-col bg-gray-50 min-h-screen mt-17">
         <main className="container mx-auto px-4 py-6 flex flex-col gap-6">
-          {/* Hero Section - Improved styling */}
-          <div className="bg-gradient-to-r from-pink-600 to-purple-600 rounded-xl shadow-lg overflow-hidden mb-6">
+          <div className="bg-gradient-to-r from-pink-900 via-pink-600 to-pink-900 rounded-xl shadow-lg overflow-hidden mb-6">
             <div className="relative px-4 py-8 sm:px-8 sm:py-12">
               {/* Decorative elements */}
               <div className="absolute inset-0 bg-black opacity-10"></div>
-              <div className="absolute -top-16 -left-16 w-56 h-56 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-30"></div>
-              <div className="absolute -bottom-16 -right-16 w-56 h-56 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-30"></div>
-
               <div className="relative z-10 text-center">
                 <h1 className="text-2xl sm:text-3xl font-bold text-white mb-3 cinzel-heading">
                   Step into success with career opportunities

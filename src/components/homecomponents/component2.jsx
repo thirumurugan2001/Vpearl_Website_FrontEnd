@@ -2,6 +2,7 @@ import React from 'react';
 import images from "../../assets/images";
 import Button from '../Button';
 import "./styles.css"
+import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
 const Component2 = () => {
@@ -13,6 +14,13 @@ const Component2 = () => {
     <div className="flex items-center justify-center px-4 py-5 bg-white mt-3 ">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-20 max-w-7xl w-full items-center">
         {/* Image Section */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9}}
+          viewport={{ once: true }}
+          className="text-left mb-16"
+        >
         <div className="hidden md:block">
           <img
             src={images.Component2.map}
@@ -20,11 +28,17 @@ const Component2 = () => {
             className="w-full h-auto object-cover "
           />
         </div>
+        </motion.div>
 
         {/* Text Section */}
-        <div>
-         
-       
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9}}
+          viewport={{ once: true }}
+          className="text-left mb-16"
+        >
+        <div>     
           <h2 className="text-3xl font-bold text-pink-600 mb-4 cinzel-body">
             AI and Software Solutions. Delivered.
           </h2>
@@ -38,6 +52,7 @@ const Component2 = () => {
 
           <Button onClick={handleClick}> Show me How</Button>
         </div>
+        </motion.div>
       </div>
     </div>
   );

@@ -135,12 +135,12 @@ const Footer = () => {
                                     to="/careers/hiring-process"
                                     className="text-gray-400 hover:text-pink-600 transition-colors duration-200 text-sm md:text-base block py-1"
                                 >
-                                    Lyf@Vpearl
+                                    Our Hiring Process
                                 </Link>
                             </li>
                             <li>
                                 <Link
-                                    to="/careers/hiring-process"
+                                    to="/careers/opening"
                                     className="text-gray-400 hover:text-pink-600 transition-colors duration-200 text-sm md:text-base block py-1"
                                 >
                                     Careers
