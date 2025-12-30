@@ -16,6 +16,8 @@ import ExpertiseRoutes from "./Routers/ExpertiseRoutes";
 import Langtech from "../src/components/Project/Langtech"
 import VenueTa from "./components/Project/VenueTa";
 import GeoFencing from "./components/Project/GeoFencing";
+import DataWarehouse from "./components/Project/Warehouse";
+import FaceIdentification from "./components/Project/FaceIdentification";
 
 const MainRouter = createBrowserRouter([
   {
@@ -81,6 +83,14 @@ const MainRouter = createBrowserRouter([
   { 
     path:"/projects/geofencing", 
     element:<GeoFencing />
+  },
+  { 
+    path:"/projects/warehouse", 
+    element:<DataWarehouse />
+  },
+  { 
+    path:"/projects/faceidentification", 
+    element:<FaceIdentification />
   },
 
   ...ExpertiseRoutes, 

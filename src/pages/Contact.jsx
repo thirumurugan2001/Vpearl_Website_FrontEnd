@@ -4,7 +4,6 @@ import Footer from "./Footer"
 import HeroSection2 from '../components/ContactHerosection';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import images from '../assets/images';
 import apirouter from '../apirouter';
 
 function Contact() {
@@ -105,7 +104,7 @@ function Contact() {
                         </div>
 
                         <div className="mb-4">
-                            <p className="font-semibold">For career related queries:</p>
+                            <p className="font-semibold">For career related queries</p>
                             <p className="text-sm text-gray-600">
                                 <span className="block mt-2">
                                     Email:{" "}
@@ -120,18 +119,10 @@ function Contact() {
                         </div>
 
                         <div>
-                            <p className="font-semibold">Mail us at:</p>
-                            <p className="text-gray-400">
+                            <p className="font-semibold">Location</p>
+                            <p className="text-gray-600">
                                 No:1, 2nd floor, Aarti Arcade, Dr Radhakrishnan Salai, Mylapore, Chennai - 600004.<br />
-                                <span className="block mt-2">
-                                    Email:{" "}
-                                    <a
-                                        href="mailto:businessdevelopment@vpearlsolutions.com"
-                                        className="text-pink-600 hover:underline"
-                                    >
-                                        businessdevelopment@vpearlsolutions.com
-                                    </a>
-                                </span>
+                                
                             </p>
                         </div>
                     </div>
