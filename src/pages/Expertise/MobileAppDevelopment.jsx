@@ -19,7 +19,7 @@ function MobileAppDevelopment() {
       />
 
       <div className="flex items-center justify-center px-4 py-5 bg-white mt-3 ">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 max-w-7xl w-full items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-7xl w-full items-center">
           {/* Image Section */}
           <div className="hidden md:block">
             <img
@@ -33,9 +33,9 @@ function MobileAppDevelopment() {
           <div>
 
 
-            {/* <h2 className="text-3xl font-bold text-pink-600 mb-4 cinzel-body">
-              AI and Software Solutions. Delivered.
-            </h2> */}
+            <h2 className="text-3xl font-bold text-pink-600 mb-4 cinzel-body">
+              Web and Mobile App Development Delivered.
+            </h2>
             <p className="text-pink-700 mb-6 leading-relaxed text-justify cinzel-body" style={{ color: 'rgb(69, 44, 72)' }}>
               Transform your business with cutting-edge web and mobile applications designed to deliver seamless user experiences and drive engagement. Our expert development team specializes in building responsive, high-performance apps tailored to your business needs. From concept to deployment, we ensure that your app is fast, secure, and easy to use across all platforms.
 

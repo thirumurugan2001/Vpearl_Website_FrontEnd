@@ -18,7 +18,7 @@ export const Consultancy = () => {
         onButtonClick={() => window.location.href = '/contact'}
       />
       <div className="flex items-center justify-center px-4 py-5 bg-white mt-3 ">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 max-w-7xl w-full items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-7xl w-full items-center">
           {/* Image Section */}
           <div className="hidden md:block">
             <img
@@ -30,6 +30,10 @@ export const Consultancy = () => {
 
           {/* Text Section */}
           <div>
+            
+            <h2 className="text-3xl font-bold text-pink-600 mb-4 cinzel-body">
+               Consultancy 
+            </h2>
             <p className="text-pink-700 mb-6 leading-relaxed text-justify cinzel-body" style={{ color: 'rgb(69, 44, 72)' }}>
               Be it a Start-up company looking for Fresher or a Big Manufacturing Industry, planning to recruit department heads, We at VPearl Solutions, take care of all your manpower requirements and source the right candidates for you. We understand that every resource you hire is important for the growth of your company and we do not compromise on quality.
               

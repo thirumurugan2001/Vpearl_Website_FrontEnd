@@ -19,7 +19,7 @@ export const WebDevelopment = () => {
       />
 
       <div className="flex items-center justify-center px-4 py-5 bg-white mt-3 ">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 max-w-7xl w-full items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-7xl w-full items-center">
           {/* Image Section */}
           <div className="hidden md:block">
             <img
@@ -31,16 +31,15 @@ export const WebDevelopment = () => {
 
           {/* Text Section */}
           <div>
-
-
-            {/* <h2 className="text-3xl font-bold text-pink-600 mb-4 cinzel-body">
-              AI and Software Solutions. Delivered.
-            </h2> */}
+            <h2 className="text-3xl font-bold text-pink-600 mb-4 cinzel-body">
+            Software Development Delivered.
+            </h2>
             <p className="text-pink-700 mb-6 leading-relaxed text-justify cinzel-body" style={{ color: 'rgb(69, 44, 72)' }}>
-              VPearl Solutions are tailored for B2B and B2C interactions and internal operations in enterprises. We are experts in building custom software and delivering on-site and offshore turn-key projects for small and medium-sized enterprises across business domains like healthcare, education, transportation and logistics, and retail & e-commerce.
+            VPearl Solutions delivers tailored digital solutions for B2B and B2C ecosystems, as well as enterprise internal operations. We specialize in building custom software applications and executing end-to-end turnkey projects, both on-site and offshore, for small and medium-sized enterprises.
             </p>
-
-
+            <p className="text-pink-700 mb-6 leading-relaxed text-justify cinzel-body" style={{ color: 'rgb(69, 44, 72)' }}>
+              With deep domain expertise, we empower businesses across healthcare, education, transportation & logistics, and retail & e-commerce, helping them streamline operations, enhance customer experiences, and accelerate digital transformation through scalable and reliable technology solutions.
+            </p>
           </div>
         </div>
       </div>

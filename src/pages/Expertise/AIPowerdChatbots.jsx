@@ -21,7 +21,7 @@ useEffect(() => {
       />
            
       <div className="flex items-center justify-center px-4 py-5 bg-white mt-3 ">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 max-w-7xl w-full items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-7xl w-full items-center">
           {/* Image Section */}
           <div className="hidden md:block">
             <img
@@ -33,6 +33,10 @@ useEffect(() => {
 
           {/* Text Section */}
           <div>
+            
+            <h2 className="text-3xl font-bold text-pink-600 mb-4 cinzel-body">
+              Artificial Intelligence Delivered.
+            </h2>
             <p className="text-pink-700 mb-6 leading-relaxed text-justify cinzel-body" style={{ color: 'rgb(69, 44, 72)' }}>
               Enhance customer engagement and streamline support with our advanced AI-powered chatbot solutions. Our intelligent chatbots are designed to understand and respond to customer queries in real-time, providing accurate and personalized interactions 24/7. From customer service to sales and internal support, our chatbots deliver a seamless conversational experience across multiple platforms.
 

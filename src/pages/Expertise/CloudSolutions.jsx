@@ -19,7 +19,7 @@ export const CloudSolutions = () => {
       />
 
       <div className="flex items-center justify-center px-4 py-5 bg-white mt-3 ">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 max-w-7xl w-full items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-7xl w-full items-center">
           {/* Image Section */}
           <div className="hidden md:block">
             <img
@@ -33,9 +33,9 @@ export const CloudSolutions = () => {
           <div>
 
 
-            {/* <h2 className="text-3xl font-bold text-pink-600 mb-4 cinzel-body">
-              AI and Software Solutions. Delivered.
-            </h2> */}
+            <h2 className="text-3xl font-bold text-pink-600 mb-4 cinzel-body">
+              Cloud Solutions Delivered.
+            </h2>
             <p className="text-pink-700 mb-6 leading-relaxed text-justify cinzel-body" style={{ color: 'rgb(69, 44, 72)' }}>
               Empower your business with the flexibility and scalability of the cloud. Our expert cloud solutions are designed to help you migrate, manage, and optimize your infrastructure with ease. Whether you're moving to the cloud, building a hybrid environment, or improving your existing cloud setup, we provide tailored solutions to meet your business needs.
 

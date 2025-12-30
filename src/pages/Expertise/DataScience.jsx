@@ -17,7 +17,7 @@ export const DataScience = () => {
         onButtonClick={() => window.location.href = '/contact'}
       />
       <div className="flex items-center justify-center px-4 py-5 bg-white mt-3 ">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 max-w-7xl w-full items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-7xl w-full items-center">
           {/* Image Section */}
           <div className="hidden md:block">
             <img
@@ -31,9 +31,9 @@ export const DataScience = () => {
           <div>
 
 
-            {/* <h2 className="text-3xl font-bold text-pink-600 mb-4 cinzel-body">
-              AI and Software Solutions. Delivered.
-            </h2> */}
+            <h2 className="text-3xl font-bold text-pink-600 mb-4 cinzel-body">
+              Data Science Delivered.
+            </h2>
             <p className="text-pink-700 mb-6 leading-relaxed text-justify cinzel-body" style={{ color: 'rgb(69, 44, 72)' }}>
             In today’s data-driven world, businesses that harness the power of data gain a significant competitive edge. Our expert data science services are designed to help you unlock valuable insights, make informed decisions, and drive growth. We specialize in transforming complex data into actionable strategies, tailored to the unique needs of your industry.
 

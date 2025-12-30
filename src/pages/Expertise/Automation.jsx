@@ -17,7 +17,7 @@ export const Automation = () => {
         onButtonClick={() => window.location.href = '/contact'}
       />
       <div className="flex items-center justify-center px-4 py-5 bg-white mt-3 ">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 max-w-7xl w-full items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-7xl w-full items-center">
           {/* Image Section */}
           <div className="hidden md:block">
             <img
@@ -29,6 +29,10 @@ export const Automation = () => {
 
           {/* Text Section */}
           <div>
+            
+            <h2 className="text-3xl font-bold text-pink-600 mb-4 cinzel-body">
+              Automation Delivered.
+            </h2>
             <p className="text-pink-700 mb-6 leading-relaxed text-justify cinzel-body" style={{ color: 'rgb(69, 44, 72)' }}>
               Streamline your business operations and boost efficiency with our expert automation solutions. We specialize in automating complex workflows, reducing manual effort, and increasing accuracy — all while saving you time and costs. Our automation services are designed to adapt to the unique needs of your business, helping you focus on what matters most.
 
